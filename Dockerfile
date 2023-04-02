@@ -11,7 +11,7 @@ RUN npm run build
 #starting sechond phase
 
 FROM nginx
-
+EXPOSE 80
 #coy builf folder from previous phase .no need nginx start command nginx take caew
 
 COPY --from=builder /app/build /usr/share/nginx/html
