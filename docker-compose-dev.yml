@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    build:
+#context where we want to take files
+      context: .
+#dockerfile name
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+    #bookmarking the node_modules
+      - /app/node_modules
+    #other files mapping from local directory
+      - .:/app
+#services for tes
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+
+    #override defult command in dockerfile
+    command: ["npm","run","test"]
